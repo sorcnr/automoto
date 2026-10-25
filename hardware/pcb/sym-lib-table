@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "automoto")(type "KiCad")(uri "${KIPRJMOD}/automoto.kicad_sym")(options "")(descr "AutoMoto v4.0 Custom Symbol Library"))
+)

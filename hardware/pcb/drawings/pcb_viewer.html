@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoMoto — PCB 3D Görsel & Teknik Çizim Görüntüleyici</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --gold: #d29922;
+      --green: #3fb950;
+      --red: #f85149;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 24px; }
+    header { max-width: 1200px; margin: 0 auto 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+    h1 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    p.subtitle { color: var(--text-muted); font-size: 14px; }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; background: rgba(88,166,255,0.15); color: var(--accent); margin-right: 6px; }
+    
+    .nav-tabs { display: flex; gap: 8px; max-width: 1200px; margin: 0 auto 20px; flex-wrap: wrap; }
+    .tab-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+    .tab-btn:hover { border-color: var(--accent); color: #fff; }
+    .tab-btn.active { background: var(--accent); color: #0d1117; border-color: var(--accent); }
+
+    .content-area { max-width: 1200px; margin: 0 auto; }
+    .tab-pane { display: none; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .tab-pane.active { display: block; }
+
+    .img-container { width: 100%; border-radius: 8px; overflow: hidden; background: #000; text-align: center; border: 1px solid var(--border); }
+    .img-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+    .meta-card { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .meta-card h3 { font-size: 15px; color: var(--accent); margin-bottom: 8px; }
+    .meta-card ul { list-style: none; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+    .meta-card ul li strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AutoMoto — 4 Katmanlı PCB Görsel & CAD Çizim Portalı</h1>
+    <p class="subtitle">
+      <span class="badge" style="background: rgba(63,185,80,0.15); color: var(--green);">v2.2 Kusursuz Sıfır-Çakışma (58x38 mm)</span>
+      <span class="badge">%52.9 Alan Tasarrufu</span>
+      <span class="badge">Rotalanmış Bakır Hatlar (Routed)</span>
+      <span class="badge">Infineon BTS7002 PROFET</span>
+      <span class="badge">Opto-MOSFET SSR</span>
+      ESP32-S3-WROOM-1U & SIM7080G Akıllı Motosiklet Güvenlik ve Telemetri Sistemi
+    </p>
+  </header>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('kicad-raytrace')">KiCad 10 3D İzometrik (58x38 mm)</button>
+    <button class="tab-btn" onclick="showTab('kicad-top')">3D Üst Yüzey (Top SMT)</button>
+    <button class="tab-btn" onclick="showTab('kicad-bottom')">3D Alt Yüzey (Bottom SMT)</button>
+    <button class="tab-btn" onclick="showTab('render-hero')">IP67 Kutu İçi Hero Shot</button>
+    <button class="tab-btn" onclick="showTab('stackup')">Katman Dizilimi (Stackup)</button>
+    <button class="tab-btn" onclick="showTab('pinout')">Molex 14-Pin Konnektör</button>
+  </div>
+
+  <div class="content-area">
+    <!-- Tab 0: KiCad 10 Raytracing 3D Render -->
+    <div id="kicad-raytrace" class="tab-pane active">
+      <div class="img-container">
+        <img src="../renders/kicad_3d_isometric.png" alt="KiCad 10 3D Raytracing Isometric Render (50x35mm)">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>v2.0 Modern Mimari Özeti</h3>
+          <ul>
+            <li><strong>Kart Boyutları:</strong> 50.0 mm x 35.0 mm (R = 2.5 mm Kavisli Kenar)</li>
+            <li><strong>Yüzey Alanı:</strong> 17.50 cm² (Önceki 85x55mm karta göre %62.6 küçültüldü)</li>
+            <li><strong>Montaj Delikleri:</strong> 4x M2.5 Vida Delikleri (Ø2.7mm delik / Ø5.0mm Şase Pad)</li>
+            <li><strong>Kontak Anahtarlama:</strong> Infineon BTS7002-1EPP PROFET (2.6 mΩ, 21A sürekli)</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Katı-Hal & Yarı İletken Avantajları</h3>
+          <ul>
+            <li><strong>Mekanik Aşınma / Ark:</strong> Sıfır (Mekanik kontak yok)</li>
+            <li><strong>Bobin Güç Tüketimi:</strong> 0.0 W (Önceki röleler 2.4W çekiyordu)</li>
+            <li><strong>Akım Telemetrisi:</strong> BTS7002 IS pini üzerinden canlı kontak akımı ölçümü (GPIO 10)</li>
+            <li><strong>RF:</strong> ESP32-S3-WROOM-1U (U.FL harici anten ile keep-out alanı elendi)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 1: KiCad Top SMT -->
+    <div id="kicad-top" class="tab-pane">
+      <div class="img-container">
+        <img src="../renders/kicad_3d_top.png" alt="AutoMoto 3D Top SMT">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>Üst Katman Yerleşimi (Top SMT)</h3>
+          <ul>
+            <li><strong>U1:</strong> ESP32-S3-WROOM-1U (U.FL IPEX konnektörlü)</li>
+            <li><strong>U2:</strong> SIM7080G LTE-M / NB-IoT / GNSS Modülü</li>
+            <li><strong>U10:</strong> Infineon BTS7002-1EPP Akıllı Kontak Anahtarı (PROFET)</li>
+            <li><strong>U11 & U12:</strong> VO14642AAB / CPC1017N Solid State Relays (Marş & Kill-SW)</li>
+            <li><strong>U3:</strong> LIS3DH 3 Eksenli MEMS İvmeölçer (Kart merkezinde)</li>
+            <li><strong>U8 & D2:</strong> SN65HVD230 CAN Transceiver + PESD2CAN TVS</li>
+            <li><strong>J1 & J4:</strong> Molex Micro-Fit 14P + USB Type-C (D3 ESD Korumalı)</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Sinyal Bütünlüğü & DFM</h3>
+          <ul>
+            <li><strong>RF İzolasyonu:</strong> U.FL anten uçları (ANT1/ANT2) izole sağ kenarda</li>
+            <li><strong>Termal Geçişler:</strong> BTS7002 tabanında 6 adet doğrudan GND dikiş viası</li>
+            <li><strong>Arayüz:</strong> Reset/Boot butonları ve RGB durum LED'leri sol kenarda</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: KiCad Bottom SMT -->
+    <div id="kicad-bottom" class="tab-pane">
+      <div class="img-container">
+        <img src="../renders/kicad_3d_bottom.png" alt="AutoMoto 3D Bottom SMT">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>Alt Katman Yerleşimi (Bottom SMT)</h3>
+          <ul>
+            <li><strong>J2:</strong> Nano SIM Kart Yuvası (Kullanıcı kolay erişimi için altta)</li>
+            <li><strong>U4, L1, C1-C3:</strong> TPS54302 Buck Katmanı + 5x5mm alaşımlı bobin</li>
+            <li><strong>U5:</strong> CN3058 1S LiFePO4 Şarj Entegresi</li>
+            <li><strong>U6:</strong> LM66100 İdeal Diyot (Kesintisiz Güç Yolu)</li>
+            <li><strong>U7:</strong> AP2112K-3.3 Düşük Gürültülü LDO Regülatör</li>
+            <li><strong>F1, D1, Q1:</strong> 2A PTC + 1500W TVS (TPSMC36A) + P-FET Ters Polarite</li>
+            <li><strong>J3:</strong> LiFePO4 Batarya JST-PH 2.0 Soketi</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Güç Dağıtımı & Gürültü İzolasyonu</h3>
+          <ul>
+            <li><strong>AC Döngü Alanı:</strong> Buck devresi alt yüzeyde minyatürize edildi (<12 mm²)</li>
+            <li><strong>Termal Dağılım:</strong> Isı üreten tüm güç elemanları L2 ve L4 bakırına yayılır</li>
+            <li><strong>Tantal Tampon:</strong> SIM7080G'nin tam altına denk gelen 100 µF Tantal (C4)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 1: 3D Top-Down Render -->
+    <div id="render-top" class="tab-pane">
+      <div class="img-container">
+        <img src="../renders/automoto_pcb_isometric_topdown_1792421339380.jpg" alt="AutoMoto 3D PCB Top-Down Render">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>3D Kart Özeti</h3>
+          <ul>
+            <li><strong>Boyutlar:</strong> 85.0 mm x 55.0 mm (R = 3.0 mm)</li>
+            <li><strong>Yüzey:</strong> Mat Siyah Lehim Maskesi, ENIG Altın Pedler</li>
+            <li><strong>Montaj:</strong> 4x M3 Köşe Montaj Delikleri (77x47 mm aralık)</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Öne Çıkan Bileşenler</h3>
+          <ul>
+            <li><strong>MCU:</strong> ESP32-S3-WROOM-1 Metal Zırhlı Modül</li>
+            <li><strong>LTE & GPS:</strong> SIMCom SIM7080G + Altın IPEX Anten Soketleri</li>
+            <li><strong>Güç & Röleler:</strong> 30A Kontak, 20A Marş, 5A Kill-Switch</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: 3D Hero Shot -->
+    <div id="render-hero" class="tab-pane">
+      <div class="img-container">
+        <img src="../renders/automoto_pcb_enclosure_hero_shot_1792421363785.jpg" alt="AutoMoto PCB Kutu İçi Hero Görseli">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>Mekanik & Muhafaza Entegrasyonu</h3>
+          <ul>
+            <li><strong>Kutu Tipi:</strong> IP67 Su & Toz Geçirmez Kompakt Kutu</li>
+            <li><strong>Conta:</strong> Turuncu Silikon Sızdırmazlık Fitili</li>
+            <li><strong>Saha Uyumu:</strong> Sele altı veya kafa grenajı içi tak-çalıştır</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Floorplan CAD -->
+    <div id="floorplan" class="tab-pane">
+      <div class="img-container">
+        <img src="pcb_mechanical_floorplan.png" alt="AutoMoto PCB Mechanical Floorplan">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>37 Donanım Bileşeni ve Grupları</h3>
+          <ul>
+            <li><strong>İşlemci & Modem:</strong> U1 (ESP32-S3), U2 (SIM7080G LTE/GPS), ANT1 & ANT2 (IPEX)</li>
+            <li><strong>Güç & Şarj:</strong> F1 (2A PTC), D1 (TVS 36A), Q1 (P-FET), U4 (Buck TPS54302), L1 (10µH), C1-C3, U7 (AP2112K LDO), U5 (CN3058), U6 (LM66100), C4 (470µF Tantal)</li>
+            <li><strong>Röle & Sürücüler:</strong> K1 (30A Kontak), K2 (20A Marş), K3 (5A Kill-SW), Q2-Q5 (N-FET Sürücüler), Q4 (Siren MOSFET)</li>
+            <li><strong>Sensör & CAN:</strong> U3 (LIS3DH IMU), U8 (SN65HVD230 CAN), D2 (ESD TVS), U9 (LTV-356T Opto)</li>
+            <li><strong>Arayüz & Giriş:</strong> J1 (Molex 14P), J4 (Type-C), J3 (LiFePO4 Bat), J2 (Nano SIM - B.Cu), SW1-SW2, D3-D5 (LEDs)</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Molex 14-Pin Tesisat Özeti</h3>
+          <ul>
+            <li><strong>P1-P2:</strong> BIKE_12V_IN (17 AWG, PTC+TVS), BIKE_GND</li>
+            <li><strong>P3-P4:</strong> IGNITION_IN / IGNITION_OUT (15 AWG, 30A Röle)</li>
+            <li><strong>P5:</strong> STARTER_CTRL (18 AWG, 20A Röle + N Kilidi)</li>
+            <li><strong>P6-P7:</strong> KILL_SWITCH_A/B (20 AWG, Emniyet Kesici)</li>
+            <li><strong>P8-P10:</strong> NEUTRAL_SENSE (Opto), SIREN (+) / (-) (110dB Piezo)</li>
+            <li><strong>P11-P14:</strong> CAN_H, CAN_L (ISO 19689), EXT_ALERT_LED, SPARE_GND</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Stackup -->
+    <div id="stackup" class="tab-pane">
+      <div class="img-container">
+        <img src="pcb_stackup_diagram.png" alt="AutoMoto PCB Stackup Diagram">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>Katman Parametreleri</h3>
+          <ul>
+            <li><strong>L1 (Top):</strong> 1.0 oz (35 µm) RF & Yüksek Hızlı Sinyaller</li>
+            <li><strong>L2 (Inner 1):</strong> 1.0 oz (35 µm) Kesintisiz Toprak (GND)</li>
+            <li><strong>L3 (Inner 2):</strong> 1.0 oz (35 µm) Güç Düzlemleri (3.8V, 3.3V, VBATT)</li>
+            <li><strong>L4 (Bottom):</strong> 2.0 oz (70 µm) Yüksek Akımlı Otomotiv Hatları</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Pinout -->
+    <div id="pinout" class="tab-pane">
+      <div class="img-container">
+        <img src="pcb_molex_pinout.png" alt="AutoMoto Molex Pinout">
+      </div>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <h3>Dış Arayüz Soketi</h3>
+          <ul>
+            <li><strong>Model:</strong> Molex Micro-Fit 3.0 (14-Pin Kilitli Otomotiv Soketi)</li>
+            <li><strong>Güç Hatları:</strong> 12V Giriş (17 AWG), Kontak Giriş/Çıkış (15 AWG)</li>
+            <li><strong>Sensör Hatları:</strong> Boş Vites (Optokuplör), CAN-Bus (TVS Korumalı)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

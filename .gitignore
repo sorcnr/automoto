@@ -1,56 +1,21 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-[Bb]uild/
-[Oo]ut/
-[Tt]mp/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Other files and folders
-.settings/
-.gradle/
-.vagrant/
-.node/
-.classpath/
-.classpath
-.project/
-.project
+# KiCad temporary & local configuration
+*.kicad_prl
+*-backups/
+*.bck
+_autosave-*
+fp-info-cache
+
+# Local editor and history
+.history/
 .vscode/
 .idea/
-.sts4-cache/
-.local/
-.DS_*/
-apminsight-javaagent/
-console/iOS/DerivedData
-console/iOS/Pods
-manager/.factorypath/
-Pods/
-node_modules/
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.DS_Store
 
-# Specific files and logs
-openremote.log
-dive.log
-yarn-error.log
-local.properties
-
-# File extensions
-*.mbtiles
-*.air
-*.ipa
-*.apk
-*.dab
-*.sh
-*.iml
-*.ipr
-*.iws
-*.tsbuildinfo
-*~
-*.tar.gz
+# Temporary outputs
+hardware/production/gerber_files/
+*.tmp

@@ -1,0 +1,42 @@
+Comment,Designator,Footprint,LCSC Part #,Manufacturer,Package,Description,DNP
+ESP32-S3-WROOM-1U-N16R8,U1,SMD Modül (18.0x19.2 mm),C2913204,Espressif Systems,SMD Module,"Dual-Core 240MHz MCU, 16MB Flash, 8MB PSRAM, BLE 5.0, U.FL",NO
+SIM808,U2,LCC-68 (24.0x24.0 mm),C126275,SIMCom Wireless,LCC-68,Quad-Band GSM/GPRS + GPS/GNSS Modülü,NO
+LIS3DHTR,U3,LGA-16 (3.0x3.0 mm),C71933,STMicroelectronics,LGA-16,3-Eksen Ultra Düşük Güç Tüketimli MEMS İvmeölçer,NO
+TPS54302DDCR,U4,SOT-23-6,C93121,Texas Instruments,SOT-23-6,"4.5V-28V Giriş, 3.86V 3A Senkron Step-Down Buck Regülatör",NO
+CN3058E,U5,SOIC-8-EP,C112011,Consonance Elec,SOIC-8-EP,3.2V LiFePO4 Özel Şarj Yönetim Entegresi (3.65V Kesme),NO
+LM66100DCKR,U6,SC-70-6,C2869734,Texas Instruments,SC-70-6,1.5A Kesintisiz Güç Yolu İdeal Diyot,NO
+AP2112K-3.3TRG1,U7,SOT-23-5,C228383,Diodes Inc.,SOT-23-5,3.3V 600mA Düşük Gürültülü LDO Regülatör,NO
+SN65HVD230DR,U8,SOIC-8,C12084,Texas Instruments,SOIC-8,3.3V CAN-Bus Alıcı-Verici (1 Mbps),NO
+LTV-356T,U9,SOP-4,C1709,Lite-On,SOP-4,3.75 kVrms Optokuplör (Boş Vites Müşür İzolasyonu),NO
+BTS7002-1EPP,U10,PG-TSDSO-14-22,C534824,Infineon Technologies,PG-TSDSO-14,2.6 mΩ 21A Akıllı Yüksek Taraf PROFET Anahtarı + Akım Algılama,NO
+VO14642AABTR,"U11, U12",SOP-4,C2653901,Vishay,SOP-4,Opto-MOSFET Solid-State Röle 60V 2A (Marş & Kill-Switch),NO
+SQJ411EP,Q1,PowerPAK SO-8,C2681534,Vishay,PowerPAK SO-8,P-Kanal -40V 30A Ters Polarite Koruma MOSFET,NO
+DMN6075S,Q5,SOT-23,C209633,Diodes Inc.,SOT-23,N-Kanal 60V 2.5A 110 dB Siren Sürücü MOSFET,NO
+TPSMC36A,D1,DO-214AB (SMC),C343277,Littelfuse,SMC,1500W Otomotiv Geçici Gerilim Bastırıcı TVS Diyot,NO
+PESD2CAN,D2,SOT-23,C35282,Nexperia,SOT-23,CAN-Bus Çift Yönlü ESD Koruma Diyotu,NO
+USBLC6-2SC6,D3,SOT-23-6,C7519,STMicroelectronics,SOT-23-6,USB Type-C D+/D-/VBUS ESD Koruma Entegresi,NO
+1812L200PR,F1,SMD 1812,C70154,Littelfuse,1812,2A Tutma / 4A Atma PTC Polimer Sigorta,NO
+6.8uH (IHLP-2020),L1,SMD 5.2x5.2 mm,C167732,Vishay / Sunlord,SMD 5.2x5.2,6.8 µH Korumalı Güç Bobini (4.5A Doyum),NO
+22uF 50V X7R,"C1, C2",SMD 1210,C15850,Murata / Yageo,1210,Buck Giriş Filtre Seramik Kapasitörleri,NO
+47uF 10V X7R,C3,SMD 1210,C96985,Murata / Yageo,1210,Buck Çıkış Filtre Seramik Kapasitörü,NO
+100uF 10V Tantal,C4,EIA-7343-31 (D Kılıf),C7171,AVX / KEMET,7343,SIM808 2A GSM RF Burst Tepe Akım Tampon Tantal,NO
+100nF 50V X7R,"C5, C7, C8",SMD 0603,C14663,Yageo,0603,BOOT & RF Dekuplaj Kapasitörleri,NO
+10uF 16V X7R,C6,SMD 0603,C19702,Yageo,0603,3.3V LDO Çıkış Filtre Kapasitörü,NO
+330R 1%,"R5, R6, R7, R11, R12",SMD 0603,C23140,Uniroyal / Yageo,0603,LED ve SSR Sürücü Akım Sınırlama Dirençleri,NO
+10k 1%,"R2, R4, R14, R16",SMD 0603,C25804,Uniroyal / Yageo,0603,Pull-Up / Gerilim Bölücü Dirençleri,NO
+4.7k 1%,"R13, R19, R20",SMD 0603,C23162,Uniroyal / Yageo,0603,PWRKEY & Sinyal Seri/Pull-Up Dirençleri,NO
+100k 1%,"R15, R17, R18",SMD 0603,C25803,Uniroyal / Yageo,0603,Buck Gerilim Bölücü & Bias Dirençleri,NO
+5.1k 1%,"R8, R9",SMD 0603,C23186,Uniroyal / Yageo,0603,USB Type-C CC1/CC2 Pull-Down Dirençleri,NO
+1.2k 1%,R10,SMD 0603,C22775,Uniroyal / Yageo,0603,BTS7002 IS Akım Algılama Şönt Direnci,NO
+54.9k 1%,R1,SMD 0603,C23214,Uniroyal / Yageo,0603,Giriş Gerilim Algılama Bölücü Direnci,NO
+2.4k 1%,R3,SMD 0603,C23089,Uniroyal / Yageo,0603,LiFePO4 Şarj Akım Programlama Direnci,NO
+RED LED,LED1,SMD 0603,C2286,Everlight,0603,Kırmızı Alarm Durum LED'i,NO
+BLUE LED,LED2,SMD 0603,C72041,Everlight,0603,Mavi BLE Durum LED'i,NO
+GREEN LED,LED3,SMD 0603,C72043,Everlight,0603,Yeşil GSM/Hücresel Durum LED'i,NO
+SMD Push Button,"SW1, SW2",SMD 5x5mm (KMR2),C318884,C&K / Korean HRO,SMD 4P,Reset (SW1) & Bootloader (SW2) Butonları,NO
+Nano SIM Socket,J2,SMD Push-Pull,C383794,Korean HRO,SMD 6P,Alt Yüzey Nano SIM Kart Yuvası,NO
+USB Type-C 16-Pin,J4,SMD USB-C,C2765186,GCT / Korean HRO,SMD 16P,Yerel Seri Programlama ve Telemetri Portu,NO
+U.FL-R-SMT-1,"ANT1, ANT2",SMD 3x3mm,C14899,Hirose / LCSC,SMD,GSM & GPS Harici Anten Konnektörleri,NO
+Molex Micro-Fit 14P (43045-1400),J1,Through-Hole 2x7 R/A P3.0mm,DNF (Do Not Fit - Hand Soldered),Molex,Through-Hole,Ana Araç Tesisat Soketi (Geliştirici tarafından el ile lehimlenecektir),YES
+JST-PH 2-Pin,J3,Through-Hole R/A P2.0mm,DNF (Do Not Fit - Hand Soldered),JST,Through-Hole,LiFePO4 Batarya Soketi (El ile lehimlenecektir),YES
+M2.5 Mounting Hole,"H1, H2, H3, H4",M2.5 Pad Via,DNF (Mechanical),Standard,Mechanical,Şase ve Kutu Sabitleme Montaj Delikleri,YES
