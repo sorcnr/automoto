@@ -54,12 +54,21 @@ Sistem, geleneksel takip cihazlarının pasif yapısını aşarak; anahtarsız b
 | Modül | Seçilen Donanım | Görevi / Çalışma Parametreleri |
 | :--- | :--- | :--- |
 | Ana İşlemci | ESP32-S3-WROOM-1 | 240 MHz Dual-Core, BLE 5.0, ULP yardımcı çekirdek, yerel USB |
-| Hücresel & GNSS | SIMCom SIM808 | Quad-Band GSM/GPRS + entegre 22-kanal GPS alıcısı (U.FL harici anten) |
+| Hücresel & GNSS (Prototip) | SIMCom SIM808 | Quad-Band GSM/GPRS + entegre 22-kanal GPS alıcısı (U.FL harici anten) |
+| Hücresel & GNSS (Seri Üretim Alternatifi) | **Quectel EG915U-EU** *(veya SIM7080G)* | LTE Cat-1 bis (10 Mbps DL / 5 Mbps UL) + 2G Fallback, GNSS, Türkiye'de IMEI kayıtlı kolay tedarik |
 | Hareket Sensörü | STMicroelectronics LIS3DH | 3 eksen MEMS ivmeölçer, I2C arayüzü, donanımsal hareket kesmesi |
 | Dahili Batarya | 1S LiFePO4 18650 (3.2V 1500mAh) | $-20^\circ\text{C}$ ile $+70^\circ\text{C}$ operasyon, yüksek termal kararlılık |
 | Güç Yönetimi | TPS54302 Buck + AP2112K LDO + CN3058 + LM66100 | 12V $\to$ 3.86V Buck (3A), 3.3V LDO, LiFePO4 şarj ve kesintisiz ideal diyot |
 | Katı-Hal Anahtarlama | PROFET & Solid-State Röleler (Mekanik Rölesiz) | Kontak: BTS7002-1EPP (25A PROFET + IS akım algılama), Marş: VO14642AAB (SSR), Kill Switch: VO14642AAB (SSR), Siren: DMN6075S (N-FET) |
 | Euro 5 CAN (Ops.) | SN65HVD230 Alıcı-Verici | ISO 19689 6 pin teşhis soketinden telemetri ve vites okuma |
+
+### 3.2. Hücresel Modem Alternatifleri ve Seri Üretim Yol Haritası (Quectel EG915U)
+Prototip v4.0 fazında maliyet ve JLCPCB SMT kolaylığı nedeniyle **SIM808** kullanılmaktadır. Ancak ileride seri üretim ve ticari saha dağıtımında şu nedenlerle **Quectel EG915U-EU (LTE Cat-1)** güçlü birincil alternatif olarak değerlendirilecektir:
+
+- **2G Kapanma (Sunset) Güvencesi:** SIM808 2G tabanlıdır. EG915U ise LTE Cat-1 bis teknolojisiyle 4G şebekelerini kullanır ve kırsal alanlar için 2G fallback desteği sunar; operatörlerin 2G frekanslarını kapatmasından etkilenmez.
+- **Türkiye'de Yasal IMEI Tedariki:** Quectel modülleri Türkiye distribütörleri (Empa, Özdisan vb.) tarafından BTK MCKS sistemine kayıtlı ("İthalatçı Kayıtlı") olarak yüksek adetlerde ve makara bazında hazır faturalı temin edilebilmektedir.
+- **Yazılımsal AT Komut Uyumluluğu:** Standart 3GPP (GSM 07.07 / 07.05) AT komut omurgası, TCP/IP yığını ve MQTT komut mantığı SIMCom ile neredeyse birebirdir (`AT+QMTOPEN`, `AT+QMTPUB` vb.). Firmware katmanındaki UART sürücüsü soyutlama katmanı (HAL) ile kolayca iki modem arasında geçiş yapabilecek şekilde tasarlanacaktır.
+- **Güç Uyumluluğu:** 3.3V – 4.3V (nominal 3.8V) besleme gerilimi, kartımızdaki TPS54302 buck regülatörünün 3.86V güç barası (`VSYS_3V8`) ile doğrudan %100 uyumludur.
 
 ## 4. Güç Yönetimi ve Hibrit Uyandırma Mimarisi
 Motosiklet aküsünün tükenmemesi için sistem park halindeyken agresif bir derin uyku (Deep Sleep) stratejisi uygular. Akım çekişi uykudayken $100\,\mu\text{A}$ seviyesinin altındadır.

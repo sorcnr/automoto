@@ -86,7 +86,7 @@ flowchart TD
 | RefDes | Bileşen Adı / Model | Paket / Kılıf | Üretici | Katman | Temel Fonksiyon ve Parametreler |
 |---|---|---|---|---|---|
 | **U1** | ESP32-S3-WROOM-1U-N16R8 | SMD Modül (18.0x19.2 mm) | Espressif Systems | Top | Çift Çekirdek 240 MHz MCU, 16MB Flash, 8MB PSRAM, BLE 5.0 |
-| **U2** | SIM808 | LCC-68 (24.0x24.0x2.6 mm) | SIMCom | Top | Quad-Band GSM/GPRS + Entegre 22-Kanal GPS/GNSS Alıcı Modülü |
+| **U2** | SIM808 *(Seri Üretim Alternatifi: Quectel EG915U-EU / SIM7080G)* | LCC-68 (24.0x24.0x2.6 mm) | SIMCom | Top | Quad-Band GSM/GPRS + Entegre 22-Kanal GPS/GNSS Alıcı Modülü (Seri üretimde 4G Cat-1 EG915U alternatifi) |
 | **U3** | LIS3DH | LGA-16 (3.0x3.0 mm) | STMicroelectronics | Top | 3 Eksen MEMS İvmeölçer (Sarsıntı ve Kaza/Devrilme Algılama) |
 | **U4** | TPS54302DDCR | SOT-23-6 | Texas Instruments | Bottom | 4.5V-28V Giriş, 3.86V / 3A Senkron Step-Down Buck Regülatör |
 | **U5** | CN3058E | HSOP-8-EP | Consonance | Bottom | 3.2V LiFePO4 Özel Şarj Entegresi (3.65V Kesme Gerilimi) |
@@ -135,6 +135,10 @@ flowchart TD
 | **SW1, SW2** | 5.0x5.0 mm Buton | SMD 4-Pin | C&K | Top | Donanımsal Reset (`SW1`) ve Bootloader (`SW2`) Butonları |
 | **LED1..3** | 0603 SMD LED | SMD 0603 | Everlight | Top | Alarm (Kırmızı), BLE (Mavi), GSM/MQTT (Yeşil) Durum LED'leri |
 | **H1..H4** | M3 Montaj Delikleri | 3.2mm Delik / 6.0mm Pad | Standart | Both | 4 Köşede M3 Mekanik Sabitleme ve Şase (`GND`) Delikleri |
+
+> [!NOTE]
+> **Seri Üretim Hücresel Modem Alternatifi (Quectel EG915U-EU):**  
+> Prototip aşamasında (v4.0) JLCPCB SMT kolaylığı ve düşük maliyet nedeniyle **SIM808** kullanılmaktadır. İleride seri üretim aşamasında operatörlerin 2G frekanslarını kapatma (sunset) riskine karşı ve Türkiye pazarında distribütörler üzerinden (Özdisan, Empa vb.) **BTK IMEI kayıtlı** makara bazında kolay tedarik edilebilmesi amacıyla **Quectel EG915U-EU (LTE Cat-1 bis + GNSS)** mimari birincil alternatif olarak kaydedilmiştir. Standart 3GPP AT komutları ve MQTT yığını SIMCom ile yüksek uyumluluğa sahiptir.
 
 ---
 
