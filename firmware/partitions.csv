@@ -1,0 +1,16 @@
+# Name,     Type, SubType, Offset,   Size,     Flags
+# ==============================================================================
+# AutoMoto 16MB Flash Partition Table
+# Secure Boot v2, Flash Encryption ve OTA Rollback Uyumlu
+# ==============================================================================
+# 0x0000 - 0xC000 : Secure Boot v2 Bootloader (Genişletilmiş 48 KB Alan)
+# 0xC000 - 0xD000 : Partition Table (CONFIG_PARTITION_TABLE_OFFSET=0xC000)
+# ==============================================================================
+otadata,    data, ota,      0x10000,  0x2000,
+phy_init,   data, phy,      0x12000,  0x1000,
+nvs,        data, nvs,      0x13000,  0x6000,
+nvs_keys,   data, nvs_keys, 0x19000,  0x1000,   encrypted
+ota_0,      app,  ota_0,     0x20000,  0x400000,
+ota_1,      app,  ota_1,     0x420000, 0x400000,
+storage,    data, spiffs,   0x820000, 0x400000, encrypted
+coredump,   data, coredump, 0xC20000, 0x40000,

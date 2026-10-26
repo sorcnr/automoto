@@ -1,0 +1,25 @@
+# ==============================================================================
+# AutoMoto v4.0 Renode Simulation Script (.resc)
+# ==============================================================================
+
+using sysbus
+mach create "automoto"
+
+# 1. Load v4.0 PCB Hardware Platform Description
+machine LoadPlatformDescription @sim/renode/automoto.repl
+
+# 2. Expose UART1 (SIM808 Cellular & GPS Modem) on TCP port 4321
+# The Python mock modem (sim/tools/mock_sim808.py) connects here!
+emulation CreateServerSocketTerminal 4321 "sim808_socket"
+connector Connect uart1 sim808_socket
+
+# 3. Create Terminal Analyzer for Debug Console (UART0)
+showAnalyzer uart0
+
+echo "=========================================================="
+echo " AutoMoto v4.0 (ESP32-S3 + SIM808) Renode Platform Loaded"
+echo " - Debug Console: uart0 (Analyzer Window)"
+echo " - SIM808 Cellular/GPS: Listening on TCP 127.0.0.1:4321"
+echo " To load firmware: sysbus LoadELF @path/to/firmware.elf"
+echo " To start: start"
+echo "=========================================================="

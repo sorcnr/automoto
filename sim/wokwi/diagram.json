@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "author": "AutoMoto Project",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "flashSize": "16" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_alarm",
+      "top": -80,
+      "left": 250,
+      "attrs": { "color": "red", "label": "ALARM (IO47)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_ble",
+      "top": -40,
+      "left": 250,
+      "attrs": { "color": "blue", "label": "BLE (IO48)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_gsm",
+      "top": 0,
+      "left": 250,
+      "attrs": { "color": "green", "label": "GSM (IO46)" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_ign",
+      "top": 80,
+      "left": 250,
+      "attrs": { "label": "BTS7002 KONTAK (IO8)" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_starter",
+      "top": 200,
+      "left": 250,
+      "attrs": { "label": "MARŞ SSR (IO9)" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_kill",
+      "top": 320,
+      "left": 250,
+      "attrs": { "label": "KILL-SWITCH SSR (IO3)" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "siren",
+      "top": 120,
+      "left": -150,
+      "attrs": { "label": "110dB SİREN (IO11)" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_neutral",
+      "top": 220,
+      "left": -150,
+      "attrs": { "color": "green", "label": "BOŞ VİTES (IO12)" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_shake",
+      "top": 320,
+      "left": -150,
+      "attrs": { "color": "red", "label": "SARSINTI / IMU (IO4)" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:47", "led_alarm:A", "red", [ "v0" ] ],
+    [ "esp:GND.1", "led_alarm:K", "black", [ "v0" ] ],
+    [ "esp:48", "led_ble:A", "blue", [ "v0" ] ],
+    [ "esp:GND.1", "led_ble:K", "black", [ "v0" ] ],
+    [ "esp:46", "led_gsm:A", "green", [ "v0" ] ],
+    [ "esp:GND.1", "led_gsm:K", "black", [ "v0" ] ],
+    [ "esp:8", "relay_ign:IN", "orange", [ "v0" ] ],
+    [ "esp:9", "relay_starter:IN", "yellow", [ "v0" ] ],
+    [ "esp:3", "relay_kill:IN", "purple", [ "v0" ] ],
+    [ "esp:11", "siren:1", "red", [ "v0" ] ],
+    [ "esp:GND.2", "siren:2", "black", [ "v0" ] ],
+    [ "esp:12", "btn_neutral:1.l", "green", [ "v0" ] ],
+    [ "esp:GND.2", "btn_neutral:2.l", "black", [ "v0" ] ],
+    [ "esp:4", "btn_shake:1.l", "red", [ "v0" ] ],
+    [ "esp:GND.2", "btn_shake:2.l", "black", [ "v0" ] ]
+  ]
+}

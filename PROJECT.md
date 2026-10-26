@@ -1,9 +1,12 @@
 # AutoMoto — ESP32 & LTE Tabanlı Akıllı Motosiklet Güvenlik ve Telemetri Sistemi
 
 ## 1. Proje Özeti ve Vizyonu
-AutoMoto, modern ve klasik motosikletler için geliştirilen; ESP32-S3 mimarisini, düşük güç tüketimli hücresel LTE bağlantısını (LTE-M/NB-IoT), BLE 5.0/6.0 yakınlık algılamasını ve MQTT tabanlı bulut haberleşmesini tek bir kompakt gövdede birleştiren yeni nesil bir akıllı güvenlik, uzaktan yönetim ve telemetri platformudur.
+AutoMoto; özellikle fabrikasyon immobilizer (çipli anahtar) bulunmayan ve hırsızlığa en açık pazar segmenti olan **100 cc – 400 cc motosikletler** (TVS, Bajaj, Honda Spacy/Dio/Activa, CFMOTO, RKS vb.) ile kurye/paket servis filoları için geliştirilen; ESP32-S3 mimarisini, düşük güç tüketimli hücresel bağlantıyı (LTE-M/NB-IoT/Cat-1), BLE 5.0 yakınlık algılamasını ve MQTT tabanlı bulut haberleşmesini tek bir kompakt gövdede birleştiren yeni nesil bir akıllı güvenlik, uzaktan yönetim ve telemetri platformudur.
 
-Sistem, geleneksel takip cihazlarının pasif yapısını aşarak; anahtarsız biniş (Keyless Go), sınırsız menzilli uzaktan çalıştırma (Remote Start), sürüş emniyet kilitli uzaktan motor durdurma (Remote Kill Switch), darbe ve kaldırma alarmı ile harici güç sabotajlarına karşı dahili $LiFePO_4$ batarya koruması sunar.
+Sistem, geleneksel takip cihazlarının pasif yapısını aşarak; anahtarsız biniş (Keyless Go), dijital anahtar paylaşımı, mekanik kontağı bypass eden katı-hal (`PROFET`) hırsızlık koruması, sınırsız menzilli uzaktan çalıştırma, sürüş emniyet kilitli yumuşak motor durdurma / hız limiti (Soft-Cut SSR), darbe/kaldırma alarmı ve harici akü sabotajlarına karşı dahili $LiFePO_4$ batarya koruması sunar.
+
+> [!NOTE]
+> Detaylı pazar analizi, kurye/filo kullanım senaryoları ve donanımsal çözüm matrisi için [docs/TARGET_MARKET_AND_USE_CASES.md](file:///home/sorcnr/Documents/automoto/docs/TARGET_MARKET_AND_USE_CASES.md) dokümanını inceleyiniz.
 
 ## 2. Temel Fonksiyonel Özellikler
 
@@ -18,7 +21,7 @@ Sistem, geleneksel takip cihazlarının pasif yapısını aşarak; anahtarsız b
 
 ### 2.3. Uzaktan Kontrol ve Telemetri (LTE & MQTT)
 - **Sınırsız Menzilli Uzaktan Çalıştırma (Remote Start):** Mobil uygulama üzerinden verilen komutla kontak açılır ve marş rölesi tetiklenir.
-- **Emniyet Kilitli Uzaktan Motor Durdurma (Kill Switch):** Çalınma durumunda motor uzaktan stop edilir. Arka tekerlek kilitlenmesini engellemek için doğrudan kontak kesilmez; yan ayak müşürü hattı üzerinden ECU kontrollü şekilde durdurulur ve sürüş halinde devreye girmemesi için IMU hız kontrolü yapılır.
+- **Hırsızlık & Gasp Korumalı 3 Aşamalı Yumuşak Motor Durdurma (Smart Soft-Kill):** Çalınma veya kurye gaspı durumunda arka tekerlek kilitlenmesini ve kaza riskini engellemek için doğrudan ana kontak kesilmez; `U12` Katı-Hal SSR ile ateşleme milisaniyelik darbelenerek motor torktan düşürülür (sanal arıza hissiyle hız 20 km/h altına çekilir), 110 dB siren öterek çevre uyarılır ve araç sıfır hıza ulaştığında `BTS7002` ile kontak kalıcı kilitlenir.
 - **Canlı GPS / GNSS Takibi & Geofence:** Sanal coğrafi çit dışına çıkıldığında harita üzerinden anlık izleme ve bildirim.
 
 ## 3. Donanım Mimarisi ve Bileşenler

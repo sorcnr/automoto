@@ -1,0 +1,31 @@
+// ==============================================================================
+// AutoMoto v4.0 Hardware Platform Description (.repl) for Renode
+// PCB: 4-Layer Solid-State ESP32-S3 + SIM808 + LIS3DH IMU + BTS7002 PROFET
+// Reference: hardware/pcb/PCB_SPECIFICATION.md
+// ==============================================================================
+
+// Internal SRAM / IRAM / DRAM
+instram0: Memory.MappedMemory @ sysbus 0x40000000
+    size: 0x80000
+
+dataram0: Memory.MappedMemory @ sysbus 0x3FC88000
+    size: 0x58000
+
+// External Flash (16 MB)
+flash: Memory.MappedMemory @ sysbus 0x42000000
+    size: 0x1000000
+
+// Main Dual-Core Xtensa Core (ESP32-S3)
+cpu: CPU.Xtensa @ sysbus
+    cpuType: "esp32s3"
+    frequency: 240000000
+
+// -----------------------------------------------------------------------------
+// Communication Peripherals
+// -----------------------------------------------------------------------------
+
+// UART0: USB Serial JTAG / Debug Console (GPIO 19/20)
+uart0: UART.PL011 @ sysbus 0x60000000
+
+// UART1: SIM808 Cellular & GPS Modem (TX: GPIO 17, RX: GPIO 18)
+uart1: UART.PL011 @ sysbus 0x60010000
