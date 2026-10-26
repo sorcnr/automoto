@@ -19,3 +19,6 @@ fp-info-cache
 # Temporary outputs
 hardware/production/gerber_files/
 *.tmp
+
+# OpenCode Teamwork session files
+.opencode/
